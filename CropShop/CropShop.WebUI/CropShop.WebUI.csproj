@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,6 +236,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ProductManager\Index.cshtml" />
+    <Content Include="Views\ProductManager\Create.cshtml" />
+    <Content Include="Views\ProductManager\Edit.cshtml" />
+    <Content Include="Views\ProductManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -251,6 +256,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CropShop.Core\CropShop.Core.csproj">
+      <Project>{a299d0ea-f361-4ea3-80aa-f4c6ef47fe60}</Project>
+      <Name>CropShop.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CropShop.DataAccess.SQL\CropShop.DataAccess.SQL.csproj">
+      <Project>{e9227c8f-0165-492f-ac2b-afa8c607b675}</Project>
+      <Name>CropShop.DataAccess.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CropShop.DataAcess.InMemory\CropShop.DataAcess.InMemory.csproj">
+      <Project>{463c1f71-fc46-4b16-b9e9-9d2ce8bc60ad}</Project>
+      <Name>CropShop.DataAcess.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CropShop.Services\CropShop.Services.csproj">
+      <Project>{b135a3fd-cffb-43af-8b95-dc4cec2303d2}</Project>
+      <Name>CropShop.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
