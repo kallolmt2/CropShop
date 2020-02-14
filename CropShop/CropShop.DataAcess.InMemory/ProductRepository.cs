@@ -11,7 +11,7 @@ namespace CropShop.DataAcess.InMemory
     public class ProductRepository
     {
         ObjectCache cache = MemoryCache.Default;
-        List<Product> products = new List<Product>();
+        List<Product> products;
 
         public ProductRepository()
         {
