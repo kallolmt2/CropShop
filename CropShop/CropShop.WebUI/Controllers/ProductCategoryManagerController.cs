@@ -1,4 +1,5 @@
-﻿using CropShop.Core.Models;
+﻿using CropShop.Core.Contracts;
+using CropShop.Core.Models;
 using CropShop.DataAcess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace CropShop.WebUI.Controllers
     public class ProductCategoryManagerController : Controller
     {
 
-        InMemoryRepository<ProductCategory> context;
+        IRepository<ProductCategory> context;
 
-        public ProductCategoryManagerController()
+        public ProductCategoryManagerController(IRepository<ProductCategory> productCategoriesContext)
         {
-            context = new InMemoryRepository<ProductCategory>();
+            context = productCategoriesContext;
         }
         // GET: ProductCategoryManager
         public ActionResult Index()
