@@ -2,6 +2,7 @@ using CropShop.Core.Contracts;
 using CropShop.Core.Models;
 using CropShop.DataAccess.SQL;
 using CropShop.DataAcess.InMemory;
+using CropShop.Services;
 using System;
 
 using Unity;
@@ -48,6 +49,10 @@ namespace CropShop.WebUI
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
             container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
+            container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
+            container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
+            container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
+            container.RegisterType<IBasketService, BasketService>();
         }
     }
 }

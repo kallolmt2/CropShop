@@ -11,7 +11,8 @@ namespace CropShop.Core.ViewModel
         public int BasketCount { get; set; }
         public decimal BasketTotal { get; set; }
 
-        public BasketSummaryViewModel(){
+        public BasketSummaryViewModel()
+        {
         }
 
         public BasketSummaryViewModel(int basketCount, decimal basketTotal)
@@ -20,5 +21,6 @@ namespace CropShop.Core.ViewModel
             this.BasketTotal = basketTotal;
 
         }
-       
+
+    }
 }

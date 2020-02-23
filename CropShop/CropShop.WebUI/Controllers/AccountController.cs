@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CropShop.WebUI.Models;
+using CropShop.Core.Models;
+using CropShop.Core.Contracts;
 
 namespace CropShop.WebUI.Controllers
 {
@@ -17,15 +19,11 @@ namespace CropShop.WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IRepository<Customer> customerRepository;
 
-        public AccountController()
+        public AccountController(IRepository<Customer> customerRepository)
         {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            this.customerRepository = customerRepository;
         }
 
         public ApplicationSignInManager SignInManager
@@ -155,6 +153,22 @@ namespace CropShop.WebUI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //register the customer
+                    Customer customer = new Customer()
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        State = model.State,
+                        Zipcode = model.Zipcode,
+                        City = model.City,
+                        Street = model.Street,
+                        UserId = user.Id
+                    };
+
+                    customerRepository.Insert(customer);
+                    customerRepository.Commit();
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

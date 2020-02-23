@@ -89,6 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BasketControllerTests.cs" />
+    <Compile Include="Mocks\MockContext.cs" />
+    <Compile Include="Mocks\MockHttpContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -99,6 +102,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CropShop.Core\CropShop.Core.csproj">
+      <Project>{A299D0EA-F361-4EA3-80AA-F4C6EF47FE60}</Project>
+      <Name>CropShop.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CropShop.Services\CropShop.Services.csproj">
+      <Project>{B135A3FD-CFFB-43AF-8B95-DC4CEC2303D2}</Project>
+      <Name>CropShop.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CropShop.WebUI\CropShop.WebUI.csproj">
       <Project>{C23E9A34-1894-446D-A968-0705AF05A433}</Project>
       <Name>CropShop.WebUI</Name>
