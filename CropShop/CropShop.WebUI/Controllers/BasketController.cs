@@ -10,13 +10,15 @@ namespace CropShop.WebUI.Controllers
 {
     public class BasketController : Controller
     {
+        IRepository<Customer> customers;
         IBasketService basketService;
         IOrderService orderService;
 
-        public BasketController(IBasketService Basketservice, IOrderService OrderService)
+        public BasketController(IBasketService Basketservice, IOrderService OrderService, IRepository<Customer> Customers)
         {
             this.basketService = Basketservice;
             this.orderService = OrderService;
+            this.customers = Customers;
         }
 
         // GET: Basket
@@ -46,17 +48,38 @@ namespace CropShop.WebUI.Controllers
 
             return PartialView(basketSummary);
         }
-
+        [Authorize]
         public ActionResult Checkout()
         {
-            return View();
+            Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name);
+            
+            if(customer != null)
+            {
+                Order order = new Order() 
+                { Email= customer.Email,
+                  FirstName = customer.FirstName,
+                  LastName = customer.LastName,
+                  Street = customer.Street,
+                  City = customer.City,
+                  State = customer.State,
+                  Zipcode = customer.Zipcode
+                };
+                return View(order);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+            
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Checkout(Order order)
         {
             var basketItems = basketService.GetBasketItems(this.HttpContext);
             order.OrderStatus = "Order Placed";
+            order.Email = User.Identity.Name;
 
             //process payment
 
